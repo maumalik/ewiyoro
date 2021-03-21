@@ -13,9 +13,9 @@ class LoginController extends Controller
         return view('auth.login', [ 'name' => $pageName]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        
+
     }
 
     
