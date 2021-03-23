@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>{{ $name }}</title>
+    <title>{{$pagename}}</title>
 </head>
 <body class="bg-gray-200">
     <header class="text-gray-600 body-font bg-white">

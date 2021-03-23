@@ -10,7 +10,7 @@ class LoginController extends Controller
     public function index()
     {
         $pageName = "Login Page";
-        return view('auth.login', [ 'name' => $pageName]);
+        return view('auth.login', [ 'pagename' => $pageName]);
     }
 
     public function store(Request $request)
