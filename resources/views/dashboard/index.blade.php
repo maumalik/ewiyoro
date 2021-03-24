@@ -16,11 +16,28 @@
         .active-nav-link { background: #1947ee; }
         .nav-item:hover { background: #1947ee; }
         .account-link:hover { background: #3d68ff; }
+
+        #mini-scroll::-webkit-scrollbar {
+            width: 4px;
+            cursor: pointer;
+            /*background-color: rgba(229, 231, 235, var(--bg-opacity));*/
+
+        }
+        #mini-scroll::-webkit-scrollbar-track {
+            background-color: rgba(229, 231, 235, var(--bg-opacity));
+            cursor: pointer;
+            /*background: red;*/
+        }
+        #mini-scroll::-webkit-scrollbar-thumb {
+            cursor: pointer;
+            background-color: #6788ff;
+            /*outline: 1px solid slategrey;*/
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-family-karla flex">
 
-    <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
+    <aside class="relative bg-sidebar h-screen w-64 hidden overflow-auto sm:block shadow-xl" id="mini-scroll">
         <div class="p-6">
             <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">PBBP2</a>
         </div>
@@ -29,10 +46,20 @@
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Dashboard
             </a>
-            <a href="blank.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-sticky-note mr-3"></i>
-                Blank Page
-            </a>
+            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                <button @click="open = !open" class="flex items-center text-white opacity-75 w-full hover:opacity-100 py-4 pl-6 nav-item">
+                    <i class="fas fa-sticky-note mr-3"></i>
+                    <p class="">PBB P2</p>
+                    <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+                <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="right-0 w-4/5 mt-2 origin-top-right">
+                    <div class="px-2 py-2">
+                      <a class="block px-4 py-2 pl-8 mt-1 text-sm font-semibold rounded-lg hover:text-gray-900 focus:text-gray-900 focus:outline-none focus:shadow-outline" href="#">Belum Bayar</a>
+                      <a class="block px-4 py-2 pl-8 mt-1 text-sm font-semibold rounded-lg hover:text-gray-900 focus:text-gray-900 focus:outline-none focus:shadow-outline" href="#">Sudah Bayar</a>
+                    </div>
+                  </div>
+            </div>
+
             <a href="tables.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-table mr-3"></i>
                 Tables
@@ -58,7 +85,7 @@
             <div class="w-1/2"></div>
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
                 <button @click="isOpen = !isOpen" class="realtive z-10 p-2 hover:bg-gray-200 focus:bg-gray-200">
-                   Halo, Iqbal Maulana Malik
+                   Halo, {{ auth()->user()->role->rolename }}
                 </button>
                 <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
@@ -131,7 +158,7 @@
             @yield('content')
     
             <footer class="w-full bg-white text-right p-4">
-                Built by <a target="_blank" href="https://davidgrzyb.com" class="underline">David Grzyb</a>.
+                <p class="text-xs md:text-sm text-gray-500">© Pemerintah Desa Wiyoro 2021</p>
             </footer>
         </div>
         
