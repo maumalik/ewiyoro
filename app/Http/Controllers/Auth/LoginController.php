@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['guest']);
+    }
+
     public function index()
     {
         $pageName = "Login Page";
@@ -15,7 +20,16 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
 
+        if(!auth()->attempt($request->only('username','password'))){
+            return back()->with('status','Invalid Login Details');
+        }
+
+        return redirect()->route('dashboard'); 
     }
 
     
