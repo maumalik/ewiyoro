@@ -15,8 +15,14 @@
                   </div>
 
                   <div class="flex items-center justify-center mt-2 space-x-2 sm:mt-0">
-                    <form action=""
+                    <form action="{{ url()->current() }}"
                       method="get">
+                      @csrf
+                      <select name="option">
+                        <option value="1">Nama Wajib Pajak</option>
+                        <option value="2">No SPPT</option>
+                        <option value="3">Blok</option>
+                      </select>
                       <div class="relative mx-auto">
                         <input type="search" name="keyword" value="" placeholder="Search" class="block w-full p-2 pr-10 text-sm leading-5 transition rounded-full shadow-sm border-secondary-300 bg-secondary-50 focus:bg-white focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
                         <button type="submit"
@@ -57,7 +63,11 @@
                                 </td>
                                 <td class="py-4 px-6 border-b border-grey-light">{{$tax->taxobject_address}}</td>
                                 <td class="py-4 px-6 border-b border-grey-light">@currency($tax->value)</td>
-                                <td class="py-4 px-6 border-b border-grey-light"><i class="fas fa-list mr-3"></i></td>
+                                <td class="py-4 px-6 border-b border-grey-light">
+                                  <form action="" method="">
+                                    <button><i class="fas fa-pay mr-3"></i></button>
+                                  </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
