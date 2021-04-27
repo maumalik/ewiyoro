@@ -33,4 +33,8 @@ class TaxController extends Controller
         //$taxs = Tax::paginate(20);
         //return view('dashboard.unpaid', ['taxs' => $taxs]);
     }
+
+    public function paytax(Request $request){
+        dd($request);
+    }
 }

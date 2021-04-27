@@ -64,8 +64,9 @@
                                 <td class="py-4 px-6 border-b border-grey-light">{{$tax->taxobject_address}}</td>
                                 <td class="py-4 px-6 border-b border-grey-light">@currency($tax->value)</td>
                                 <td class="py-4 px-6 border-b border-grey-light">
-                                  <form action="" method="">
-                                    <button><i class="fas fa-pay mr-3"></i></button>
+                                  <form action="{{ route('paytax', $tax->tax_number) }}" method="post">
+                                    @csrf
+                                    <button type="submit"><i class="fas fa-pay mr-3"></i></button>
                                   </form>
                                 </td>
                             </tr>

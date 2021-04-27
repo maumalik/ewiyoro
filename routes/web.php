@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaxController;
 
+use App\Models\Tax;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,3 +36,4 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/daftar-sppt', [TaxController::class, 'index'])->name('taxunpaid');
+Route::post('/daftar-sppt/{tax_number}', [TaxController::class, 'paytax'])->name('paytax');
