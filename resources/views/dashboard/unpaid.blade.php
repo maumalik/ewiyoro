@@ -1,7 +1,7 @@
 @extends('dashboard.index')
 @section('content')
     <main class="w-full flex-grow p-6">
-        <h1 class="text-3xl text-black pb-6">Daftar SPPT</h1>
+        <h1 class="text-sm font-bold"><a class="text-blue-500" href="{{ route('dashboard')}}">Dashboard</a>>Data SPPT Belum Terbayarkan</h1>
 
         <div class="w-full mt-6">
             <div class="px-6 py-4 mb-4 overflow-hidden border rounded-lg shadow-sm border-secondary-300 bg-white">
@@ -39,6 +39,15 @@
               </div>
             
             <div class="bg-white overflow-auto p-2 border rounded-lg shadow-sm border-secondary-300">
+              
+              <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 mb-6 rounded relative" role="alert">
+                <strong class="font-bold">Holy smokes!</strong>
+                <!--<input type="checkbox" class="absolute top-0 bottom-0 right-0 px-4 py-3 h-full"  id="footertoast">
+                <span class="absolute top-0 bottom-0 right-0 px-4 py-3 bg-red-100">
+                  <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                </span>-->
+              </div>
+
                 <table class="text-left w-full border-collapse mb-2"> <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
                     <thead>
                         <tr>
@@ -65,9 +74,9 @@
                                   <td class="py-4 px-6 border-b border-grey-light">{{$tax->taxobject_address}}</td>
                                   <td class="py-4 px-6 border-b border-grey-light">@currency($tax->value)</td>
                                   <td class="py-4 px-6 border-b border-grey-light">
-                                    <form action="{{ route('paytax', $tax->tax_number) }}" method="post">
+                                    <form action="{{ route('tax.pay', $tax) }}" method="post">
                                       @csrf
-                                      <button type="submit" title="Bayar"><i class="fas fa-money-check-alt mr-3"></i></button>
+                                      <button type="submit" title="Bayar"><i class="fas fa-money-check-alt mr-3 text-blue-500"></i></button>
                                     </form>
                                   </td>
                               </tr>

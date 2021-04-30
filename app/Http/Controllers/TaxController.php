@@ -34,7 +34,12 @@ class TaxController extends Controller
         //return view('dashboard.unpaid', ['taxs' => $taxs]);
     }
 
-    public function paytax(Request $request){
-        dd($request);
+    public function paytax(Request $request, Tax $tax){
+        $request->user()->pays()->create([
+            'tax_id' => $tax->id,
+            'ispayed' => 1
+        ]);
+
+        return back();
     }
 }

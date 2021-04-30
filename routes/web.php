@@ -35,5 +35,5 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/daftar-sppt', [TaxController::class, 'index'])->name('taxunpaid');
-Route::post('/daftar-sppt/{tax_number}', [TaxController::class, 'paytax'])->name('paytax');
+Route::get('/daftar-sppt', [TaxController::class, 'index'])->name('tax');
+Route::post('/daftar-sppt/{tax}', [TaxController::class, 'paytax'])->name('tax.pay');

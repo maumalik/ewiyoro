@@ -52,4 +52,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+   /**
+    * Get all of the comments for the User
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+   public function pays()
+   {
+       return $this->hasMany(Pay::class, 'user_id', 'id');
+   }
 }
