@@ -14,7 +14,7 @@ class CreateTaxesTable extends Migration
     public function up()
     {
         Schema::create('taxes', function (Blueprint $table) {
-            $table->string('id',100)->primary();
+            $table->id();
             $table->string('tax_block');
             $table->string('tax_number');
             $table->string('year');
@@ -32,6 +32,7 @@ class CreateTaxesTable extends Migration
             $table->integer('unit_building_value');
             $table->integer('value');
             $table->boolean('ispayed');
+            $table->integer('ref');
         });
     }
 
