@@ -40,6 +40,8 @@ class TaxController extends Controller
             'ispayed' => 1
         ]);
 
-        return back();
+        Tax::where('id', $tax->id)->update(['ispayed' => 1]);
+
+        return back()->with('status','Data SPPT '.$tax->tax_number.' telah berhasil dibayarkan');
     }
 }

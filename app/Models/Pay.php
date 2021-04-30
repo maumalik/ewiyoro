@@ -14,4 +14,10 @@ class Pay extends Model
         'tax_id',
         'ispayed',
     ];
+
+    public function Tax()
+    {
+        return $this->belongsTo(Tax::class);
+    }
+    
 }
