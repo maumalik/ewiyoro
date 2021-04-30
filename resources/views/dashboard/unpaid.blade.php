@@ -4,10 +4,6 @@
         <h1 class="text-3xl text-black pb-6">Daftar SPPT</h1>
 
         <div class="w-full mt-6">
-            <p class="text-xl pb-3 flex items-center">
-                <i class="fas fa-list mr-3"></i> Table Example
-            </p>
-            
             <div class="px-6 py-4 mb-4 overflow-hidden border rounded-lg shadow-sm border-secondary-300 bg-white">
                 <div class="flex flex-col justify-between sm:flex-row">
                   <div class="text-center sm:text-left flex-start">
@@ -54,23 +50,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($taxs as $tax)
-                            <tr class="hover:bg-grey-lighter">
-                                <td class="py-4 px-6 border-b border-grey-light">{{$tax->tax_number}}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">
-                                    <p>{{$tax->taxpayer_name}}</p>
-                                    <p class="text-xs">{{$tax->taxpayer_address}}, {{$tax->rt}}/{{$tax->rw}}</p>
-                                </td>
-                                <td class="py-4 px-6 border-b border-grey-light">{{$tax->taxobject_address}}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">@currency($tax->value)</td>
-                                <td class="py-4 px-6 border-b border-grey-light">
-                                  <form action="{{ route('paytax', $tax->tax_number) }}" method="post">
-                                    @csrf
-                                    <button type="submit"><i class="fas fa-pay mr-3"></i></button>
-                                  </form>
-                                </td>
-                            </tr>
-                        @endforeach
+                        @if ($taxs->count() <= 0)
+                          <tr class="hover:bg-grey-lighter">
+                            <td class="py-4 px-6 border-b border-grey-light text-center" colspan="5">Tidak Ada Data</td>
+                          <tr>
+                        @else    
+                          @foreach ($taxs as $tax)
+                              <tr class="hover:bg-grey-lighter">
+                                  <td class="py-4 px-6 border-b border-grey-light">{{$tax->tax_number}}</td>
+                                  <td class="py-4 px-6 border-b border-grey-light">
+                                      <p>{{$tax->taxpayer_name}}</p>
+                                      <p class="text-xs">{{$tax->taxpayer_address}}, {{$tax->rt}}/{{$tax->rw}}</p>
+                                  </td>
+                                  <td class="py-4 px-6 border-b border-grey-light">{{$tax->taxobject_address}}</td>
+                                  <td class="py-4 px-6 border-b border-grey-light">@currency($tax->value)</td>
+                                  <td class="py-4 px-6 border-b border-grey-light">
+                                    <form action="{{ route('paytax', $tax->tax_number) }}" method="post">
+                                      @csrf
+                                      <button type="submit" title="Bayar"><i class="fas fa-money-check-alt mr-3"></i></button>
+                                    </form>
+                                  </td>
+                              </tr>
+                          @endforeach
+                        @endif
                     </tbody>
                 </table>
                 {{ $taxs->links() }}
