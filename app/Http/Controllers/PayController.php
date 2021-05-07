@@ -12,7 +12,7 @@ class PayController extends Controller
     {
         $pagination  = 20;
       
-        $taxs    = Pay::when($request->keyword, function ($query) use ($request) {
+        $taxs    = $request->user()->pays()->when($request->keyword, function ($query) use ($request) {
             if($request->option==1){
                 $query->whereHas('tax', function($q) use ($request) {
                     $q->where('taxpayer_name', 'like', "%{$request->keyword}%");
@@ -26,7 +26,7 @@ class PayController extends Controller
                     $q->where('tax_block', 'like', "%{$request->keyword}%");
                 });
             }
-        })->where('user_id',auth()->user()->id)->paginate($pagination);
+        })->where('ispayed', true)->paginate($pagination);
     
         $taxs->appends($request->only('option','keyword'));
 
