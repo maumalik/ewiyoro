@@ -55,7 +55,7 @@
                 <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="right-0 w-4/5 mt-2 origin-top-right">
                     <div class="px-2 py-2">
                       <a class="block px-4 py-2 pl-8 mt-1 text-sm font-semibold rounded-lg hover:text-gray-900 focus:text-gray-900 focus:outline-none focus:shadow-outline" href="{{ route('tax') }}">Belum Bayar</a>
-                      <a class="block px-4 py-2 pl-8 mt-1 text-sm font-semibold rounded-lg hover:text-gray-900 focus:text-gray-900 focus:outline-none focus:shadow-outline" href="#">Sudah Bayar</a>
+                      <a class="block px-4 py-2 pl-8 mt-1 text-sm font-semibold rounded-lg hover:text-gray-900 focus:text-gray-900 focus:outline-none focus:shadow-outline" href="{{ route('tax.payed') }}">Sudah Bayar</a>
                     </div>
                   </div>
             </div>

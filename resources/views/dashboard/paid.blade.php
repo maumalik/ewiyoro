@@ -1,261 +1,89 @@
 @extends('dashboard.index')
 @section('content')
-    <main class="w-full flex-grow p-6">
-        <h1 class="text-3xl text-black pb-6">Daftar SPPT</h1>
+<main class="w-full flex-grow p-6">
+        <h1 class="text-sm font-bold"><a class="text-blue-500" href="{{ route('dashboard')}}">Dashboard</a>>Data SPPT Sudah Terbayarkan</h1>
 
         <div class="w-full mt-6">
-            <p class="text-xl pb-3 flex items-center">
-                <i class="fas fa-list mr-3"></i> Table Example
-            </p>
-            <div class="bg-white overflow-auto">
-                <table class="min-w-full bg-white">
-                    <thead class="bg-gray-800 text-white">
-                        <tr>
-                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
-                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Last name</th>
-                            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Phone</th>
-                            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Email</td>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-700">
-                        <tr>
-                            <td class="w-1/3 text-left py-3 px-4">Lian</td>
-                            <td class="w-1/3 text-left py-3 px-4">Smith</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
-                        </tr>
-                        <tr class="bg-gray-200">
-                            <td class="w-1/3 text-left py-3 px-4">Emma</td>
-                            <td class="w-1/3 text-left py-3 px-4">Johnson</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
-                        </tr>
-                        <tr>
-                            <td class="w-1/3 text-left py-3 px-4">Oliver</td>
-                            <td class="w-1/3 text-left py-3 px-4">Williams</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
-                        </tr>
-                        <tr class="bg-gray-200">
-                            <td class="w-1/3 text-left py-3 px-4">Isabella</td>
-                            <td class="w-1/3 text-left py-3 px-4">Brown</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="pt-3 text-gray-600">
-                Source: <a class="underline" href="https://tailwindcomponents.com/component/striped-table">https://tailwindcomponents.com/component/striped-table</a>
-            </p>
-        </div>
+            <div class="px-6 py-4 mb-4 overflow-hidden border rounded-lg shadow-sm border-secondary-300 bg-white">
+                <div class="flex flex-col justify-between sm:flex-row">
+                  <div class="text-center sm:text-left flex-start">
+                    <h3 class="text-lg font-semibold leading-6 text-gray-800">Data SPPT Sudah Terbayarkan</h3>
+                    <h2 class="text-lg font-semibold leading-6 text-gray-800">Total Terbayar </h2>
+                  </div>
 
-        <div class="w-full mt-12">
-            <p class="text-xl pb-3 flex items-center">
-                <i class="fas fa-list mr-3"></i> Table Example
-            </p>
-            <div class="bg-white overflow-auto">
-                <table class="text-left w-full border-collapse"> <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
+                  <div class="flex items-center justify-center mt-2 space-x-2 sm:mt-0">
+                    <form action="{{ url()->current() }}"
+                      method="get">
+                      @csrf
+                      <select name="option">
+                        <option value="1">Nama Wajib Pajak</option>
+                        <option value="2">No SPPT</option>
+                        <option value="3">Blok</option>
+                      </select>
+                      <div class="relative mx-auto">
+                        <input type="search" name="keyword" value="" placeholder="Search" class="block w-full p-2 pr-10 text-sm leading-5 transition rounded-full shadow-sm border-secondary-300 bg-secondary-50 focus:bg-white focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                        <button type="submit"
+                          class="absolute top-0 right-0 inline-flex items-center px-2 py-2 ml-1 mr-2 text-sm focus:outline-none">
+                          <svg class="w-5 h-5 text-gray-500 transition dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 disabled:opacity-25"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                              clip-rule="evenodd" />
+                          </svg>
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            
+            <div class="bg-white overflow-auto p-2 border rounded-lg shadow-sm border-secondary-300">
+              
+            
+             
+
+                <table class="text-left w-full border-collapse mb-2"> <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
                     <thead>
                         <tr>
-                            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Name</th>
-                            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Last Name</th>
-                            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Phone</th>
-                            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Email</th>
+                            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">No SPPT</th>
+                            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Nama</th>
+                            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Persil</th>
+                            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Nominal</th>
+                            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Tgl Bayar</th>
+                            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-4 px-6 border-b border-grey-light">Lian</td>
-                            <td class="py-4 px-6 border-b border-grey-light">Smith</td>
-                            <td class="py-4 px-6 border-b border-grey-light">622322662</td>
-                            <td class="py-4 px-6 border-b border-grey-light">jonsmith@mail.com</td>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-4 px-6 border-b border-grey-light">Lian</td>
-                            <td class="py-4 px-6 border-b border-grey-light">Smith</td>
-                            <td class="py-4 px-6 border-b border-grey-light">622322662</td>
-                            <td class="py-4 px-6 border-b border-grey-light">jonsmith@mail.com</td>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-4 px-6 border-b border-grey-light">Lian</td>
-                            <td class="py-4 px-6 border-b border-grey-light">Smith</td>
-                            <td class="py-4 px-6 border-b border-grey-light">622322662</td>
-                            <td class="py-4 px-6 border-b border-grey-light">jonsmith@mail.com</td>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-4 px-6 border-b border-grey-light">Lian</td>
-                            <td class="py-4 px-6 border-b border-grey-light">Smith</td>
-                            <td class="py-4 px-6 border-b border-grey-light">622322662</td>
-                            <td class="py-4 px-6 border-b border-grey-light">jonsmith@mail.com</td>
-                        </tr>
+                    @if ($taxs->count() <= 0)
+                          <tr class="hover:bg-grey-lighter">
+                            <td class="py-4 px-6 border-b border-grey-light text-center" colspan="5">Tidak Ada Data</td>
+                          <tr>
+                        @else    
+                          @foreach ($taxs as $tax)
+                              <tr class="hover:bg-grey-lighter">
+                                  <td class="py-4 px-6 border-b border-grey-light">{{$tax->tax->tax_number}}</td>
+                                  <td class="py-4 px-6 border-b border-grey-light">
+                                      <p>{{$tax->tax->taxpayer_name}}</p>
+                                      <p class="text-xs">{{$tax->tax->taxpayer_address}}, {{$tax->tax->rt}}/{{$tax->tax->rw}}</p>
+                                  </td>
+                                  <td class="py-4 px-6 border-b border-grey-light">{{$tax->tax->taxobject_address}}</td>
+                                  <td class="py-4 px-6 border-b border-grey-light">@currency($tax->tax->value)</td>
+                                  <td class="py-4 px-6 border-b border-grey-light">{{date_format($tax->created_at,'d-m-Y')}}</td>
+                                  <td class="py-4 px-6 border-b border-grey-light">
+                                    <form action="#" method="post">
+                                      @csrf
+                                      <button type="submit" title="Bayar"><i class="fas fa-money-check-alt mr-3 text-blue-500"></i></button>
+                                    </form>
+                                  </td>
+                              </tr>
+                          @endforeach
+                        @endif
                     </tbody>
                 </table>
+                {{ $taxs->links() }}
             </div>
-            <p class="pt-3 text-gray-600">
-                Source: <a class="underline" href="https://tailwindcomponents.com/component/table">https://tailwindcomponents.com/component/table</a>
-            </p>
-        </div>
-
-        <div class="w-full mt-12">
-            <p class="text-xl pb-3 flex items-center">
-                <i class="fas fa-list mr-3"></i> Table Example
-            </p>
-            <div class="bg-white overflow-auto">
-                <table class="min-w-full leading-normal">
-                    <thead>
-                        <tr>
-                            <th
-                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                User
-                            </th>
-                            <th
-                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Rol
-                            </th>
-                            <th
-                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Created at
-                            </th>
-                            <th
-                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Status
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 w-10 h-10">
-                                        <img class="w-full h-full rounded-full"
-                                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                            alt="" />
-                                    </div>
-                                    <div class="ml-3">
-                                        <p class="text-gray-900 whitespace-no-wrap">
-                                            Vera Carpenter
-                                        </p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">Admin</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                    Jan 21, 2020
-                                </p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <span
-                                    class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                    <span aria-hidden
-                                        class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                    <span class="relative">Activo</span>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 w-10 h-10">
-                                        <img class="w-full h-full rounded-full"
-                                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                            alt="" />
-                                    </div>
-                                    <div class="ml-3">
-                                        <p class="text-gray-900 whitespace-no-wrap">
-                                            Blake Bowman
-                                        </p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">Editor</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                    Jan 01, 2020
-                                </p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <span
-                                    class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                    <span aria-hidden
-                                        class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                    <span class="relative">Activo</span>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 w-10 h-10">
-                                        <img class="w-full h-full rounded-full"
-                                            src="https://images.unsplash.com/photo-1540845511934-7721dd7adec3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                            alt="" />
-                                    </div>
-                                    <div class="ml-3">
-                                        <p class="text-gray-900 whitespace-no-wrap">
-                                            Dana Moore
-                                        </p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">Editor</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                    Jan 10, 2020
-                                </p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <span
-                                    class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
-                                    <span aria-hidden
-                                        class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
-                                    <span class="relative">Suspended</span>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-5 py-5 bg-white text-sm">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 w-10 h-10">
-                                        <img class="w-full h-full rounded-full"
-                                            src="https://images.unsplash.com/photo-1522609925277-66fea332c575?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&h=160&w=160&q=80"
-                                            alt="" />
-                                    </div>
-                                    <div class="ml-3">
-                                        <p class="text-gray-900 whitespace-no-wrap">
-                                            Alonzo Cox
-                                        </p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-5 py-5 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">Admin</p>
-                            </td>
-                            <td class="px-5 py-5 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">Jan 18, 2020</p>
-                            </td>
-                            <td class="px-5 py-5 bg-white text-sm">
-                                <span
-                                    class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
-                                    <span aria-hidden
-                                        class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
-                                    <span class="relative">Inactive</span>
-                                </span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="pt-3 text-gray-600">
-                Source: <a class="underline" href="https://tailwindcomponents.com/component/table-responsive-with-filters">https://tailwindcomponents.com/component/table-responsive-with-filters</a>
-            </p>
         </div>
     </main>
 @endsection

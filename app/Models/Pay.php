@@ -15,7 +15,7 @@ class Pay extends Model
         'ispayed',
     ];
 
-    public function Tax()
+    public function tax()
     {
         return $this->belongsTo(Tax::class);
     }

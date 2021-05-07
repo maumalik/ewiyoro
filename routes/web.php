@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaxController;
+use App\Http\Controllers\PayController;
 
 use App\Models\Tax;
 
@@ -35,5 +36,8 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/daftar-sppt', [TaxController::class, 'index'])->name('tax');
-Route::post('/daftar-sppt/{tax}', [TaxController::class, 'paytax'])->name('tax.pay');
+Route::get('/sppt/belum-bayar', [TaxController::class, 'index'])->name('tax');
+Route::post('/sppt/{tax}/belum-bayar', [TaxController::class, 'paytax'])->name('tax.pay');
+
+Route::get('/sppt/sudah-bayar', [PayController::class, 'index'])->name('tax.payed');
+
