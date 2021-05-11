@@ -13,7 +13,6 @@
                   <div class="flex items-center justify-center mt-2 space-x-2 sm:mt-0">
                     <form action="{{ url()->current() }}"
                       method="get">
-                      @csrf
                       <select name="option">
                         <option value="1">Nama Wajib Pajak</option>
                         <option value="2">No SPPT</option>
