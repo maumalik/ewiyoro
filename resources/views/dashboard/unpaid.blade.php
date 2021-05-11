@@ -1,4 +1,4 @@
-@extends('dashboard.index')
+@extends('dashboard.index', ['title' => $title , 'flag_menu' => $flag_menu])
 @section('content')
     <main class="w-full flex-grow p-6">
         <h1 class="text-sm font-bold"><a class="text-blue-500" href="{{ route('dashboard')}}">Dashboard</a>>Data SPPT</h1>

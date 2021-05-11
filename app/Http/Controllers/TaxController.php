@@ -7,6 +7,11 @@ use App\Models\Tax;
 
 class TaxController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    } 
+
     public function index(Request $request)
     {  
         $pagination  = 20;
@@ -28,6 +33,8 @@ class TaxController extends Controller
     
         return view('dashboard.unpaid', [
             'taxs' => $taxs,
+            'title' => 'Data SPPT',
+            'flag_menu' => 2,
         ])->with('i', ($request->input('page', 1) - 1) * $pagination);
 
     }

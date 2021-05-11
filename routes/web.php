@@ -9,6 +9,7 @@ use App\Http\Controllers\TaxController;
 use App\Http\Controllers\PayController;
 
 use App\Models\Tax;
+use App\Models\Pay;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,5 @@ Route::get('/sppt/belum-bayar', [TaxController::class, 'index'])->name('tax');
 Route::post('/sppt/{tax}/belum-bayar', [TaxController::class, 'paytax'])->name('tax.pay');
 
 Route::get('/sppt/sudah-bayar', [PayController::class, 'index'])->name('tax.payed');
+Route::post('/sppt/{pay}/sudah-bayar', [PayController::class, 'unpay'])->name('tax.unpayed');
 

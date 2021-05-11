@@ -9,6 +9,11 @@ use App\Models\Tax;
 
 class PayController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+
     public function index(Request $request)
     {
         $pagination  = 20;
@@ -42,6 +47,20 @@ class PayController extends Controller
             'taxs' => $taxs,
             'total_pays' => $pays, 
             'total' => $total,
+            'title' => 'Data SPPT Terbayar',
+            'flag_menu' => 3,
         ])->with('i', ($request->input('page', 1) - 1) * $pagination);
+    }
+
+    public function unpay(Request $request, Pay $pay)
+    {
+        //dd($pay->tax->tax_number);
+        $request->user()->pays()->where('id', $pay->id)->update([
+            'ispayed' => 0
+        ]);
+
+        Tax::where('id', $pay->tax_id)->update(['ispayed' => 0]);
+
+        return back()->with('status','Data SPPT '.$pay->tax->tax_number.' atas nama '.$pay->tax->taxpayer_name.' telah berhasil dihapus');
     }
 }

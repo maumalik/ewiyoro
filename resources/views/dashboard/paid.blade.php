@@ -1,4 +1,4 @@
-@extends('dashboard.index')
+@extends('dashboard.index', ['title' => $title , 'flag_menu' => $flag_menu])
 @section('content')
 <main class="w-full flex-grow p-6">
         <h1 class="text-sm font-bold"><a class="text-blue-500" href="{{ route('dashboard')}}">Dashboard</a>>Data SPPT Sudah Terbayarkan</h1>
@@ -42,7 +42,13 @@
             
             <div class="bg-white overflow-auto p-2 border rounded-lg shadow-sm border-secondary-300">
               
-            
+              @if (session('status'))
+
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 mb-6 rounded relative" role="alert">
+                  <strong class="font-bold">{{ session('status') }}</strong>
+                </div>
+
+              @endif
              
 
                 <table class="text-left w-full border-collapse mb-2"> <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
@@ -59,7 +65,7 @@
                     <tbody>
                     @if ($taxs->count() <= 0)
                           <tr class="hover:bg-grey-lighter">
-                            <td class="py-4 px-6 border-b border-grey-light text-center" colspan="5">Tidak Ada Data</td>
+                            <td class="py-4 px-6 border-b border-grey-light text-center" colspan="6">Tidak Ada Data</td>
                           <tr>
                         @else    
                           @foreach ($taxs as $tax)
@@ -73,7 +79,7 @@
                                   <td class="py-4 px-6 border-b border-grey-light">@currency($tax->tax->value)</td>
                                   <td class="py-4 px-6 border-b border-grey-light">{{date_format($tax->created_at,'d-m-Y')}}</td>
                                   <td class="py-4 px-6 border-b border-grey-light text-center">
-                                    <form action="#" method="post">
+                                    <form action="{{route('tax.unpayed', $tax)}}" method="post">
                                       @csrf
                                       <button class="rounded-full flex items-center justify-center bg-red-400 h-8 w-8 hover:bg-red-700" type="submit" title="Batalkan Pembayaran"><i class="fas fa-trash text-white"></i></button>
                                     </form>
