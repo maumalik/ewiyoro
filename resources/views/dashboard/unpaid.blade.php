@@ -1,13 +1,13 @@
 @extends('dashboard.index')
 @section('content')
     <main class="w-full flex-grow p-6">
-        <h1 class="text-sm font-bold"><a class="text-blue-500" href="{{ route('dashboard')}}">Dashboard</a>>Data SPPT Belum Terbayarkan</h1>
+        <h1 class="text-sm font-bold"><a class="text-blue-500" href="{{ route('dashboard')}}">Dashboard</a>>Data SPPT</h1>
 
         <div class="w-full mt-6">
             <div class="px-6 py-4 mb-4 overflow-hidden border rounded-lg shadow-sm border-secondary-300 bg-white">
                 <div class="flex flex-col justify-between sm:flex-row">
                   <div class="text-center sm:text-left flex-start">
-                    <h3 class="text-lg font-semibold leading-6 text-gray-800">Data SPPT Belum Terbayarkan</h3>
+                    <h3 class="text-lg font-semibold leading-6 text-gray-800">Data SPPT</h3>
                   </div>
 
                   <div class="flex items-center justify-center mt-2 space-x-2 sm:mt-0">
@@ -79,11 +79,15 @@
                                   <td class="py-4 px-6 border-b border-grey-light">{{$tax->taxobject_address}}</td>
                                   <td class="py-4 px-6 border-b border-grey-light">@currency($tax->value)</td>
                                   <td class="py-4 px-6 border-b border-grey-light">
+                                  @if($tax->ispayed == true)
+                                    <p class="bg-green-300 text-sm text-center text-white rounded-lg" >Lunas</p>
+                                  @else
                                     <form action="{{ route('tax.pay', $tax) }}" method="post">
                                       @csrf
-                                      <button type="submit" title="Bayar"><i class="fas fa-money-check-alt mr-3 text-blue-500"></i></button>
+                                      <button type="submit" title="Bayar" class="rounded-full flex items-center justify-center bg-blue-400 h-8 w-8 hover:bg-blue-700" ><i class="fas fa-money-check-alt text-white"></i></button>
                                     </form>
                                   </td>
+                                  @endif
                               </tr>
                           @endforeach
                         @endif

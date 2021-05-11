@@ -22,7 +22,7 @@ class TaxController extends Controller
                 $query
                 ->where('tax_block', 'like', "%{$request->keyword}%");
             }
-        })->where('ispayed', 'false')->paginate($pagination);
+        })->paginate($pagination);
     
         $taxs->appends($request->only('option','keyword'));
     
@@ -30,8 +30,6 @@ class TaxController extends Controller
             'taxs' => $taxs,
         ])->with('i', ($request->input('page', 1) - 1) * $pagination);
 
-        //$taxs = Tax::paginate(20);
-        //return view('dashboard.unpaid', ['taxs' => $taxs]);
     }
 
     public function paytax(Request $request, Tax $tax){

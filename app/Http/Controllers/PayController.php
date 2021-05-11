@@ -31,12 +31,17 @@ class PayController extends Controller
     
         $taxs->appends($request->only('option','keyword'));
 
-        $value = Pay::where('user_id', $request->user()->id)->with('tax:value')->get();
+        $pays = $request->user()->pays()->where('ispayed', true)->withSum('tax','value')->get()->sum('tax_sum_value');
+        $total = $request->user()->pays()->where('ispayed', true)->count();
 
-        dd($value);
+        //$value = $pays->tax()->max('value');
+
+        //dd($pays);
     
         return view('dashboard.paid', [
             'taxs' => $taxs,
+            'total_pays' => $pays, 
+            'total' => $total,
         ])->with('i', ($request->input('page', 1) - 1) * $pagination);
     }
 }

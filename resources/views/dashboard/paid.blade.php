@@ -8,7 +8,8 @@
                 <div class="flex flex-col justify-between sm:flex-row">
                   <div class="text-center sm:text-left flex-start">
                     <h3 class="text-lg font-semibold leading-6 text-gray-800">Data SPPT Sudah Terbayarkan</h3>
-                    <h2 class="text-lg font-semibold leading-6 text-gray-800">Total Terbayar : {{$taxs->count() }} </h2>
+                    <h2 class="text-base font-semibold leading-6 text-gray-500">Total SPPT Terbayar : {{$total}} </h2>
+                    <h2 class="text-base font-semibold leading-6 text-gray-500">Total Nomial Pembayaran : @currency($total_pays) </h2>
                   </div>
 
                   <div class="flex items-center justify-center mt-2 space-x-2 sm:mt-0">
@@ -71,10 +72,10 @@
                                   <td class="py-4 px-6 border-b border-grey-light">{{$tax->tax->taxobject_address}}</td>
                                   <td class="py-4 px-6 border-b border-grey-light">@currency($tax->tax->value)</td>
                                   <td class="py-4 px-6 border-b border-grey-light">{{date_format($tax->created_at,'d-m-Y')}}</td>
-                                  <td class="py-4 px-6 border-b border-grey-light">
+                                  <td class="py-4 px-6 border-b border-grey-light text-center">
                                     <form action="#" method="post">
                                       @csrf
-                                      <button type="submit" title="Bayar"><i class="fas fa-money-check-alt mr-3 text-blue-500"></i></button>
+                                      <button class="rounded-full flex items-center justify-center bg-red-400 h-8 w-8 hover:bg-red-700" type="submit" title="Batalkan Pembayaran"><i class="fas fa-trash text-white"></i></button>
                                     </form>
                                   </td>
                               </tr>

@@ -39,7 +39,7 @@
 
     <aside class="relative bg-sidebar h-screen w-64 hidden overflow-auto sm:block shadow-xl" id="mini-scroll">
         <div class="p-6">
-            <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">PBBP2</a>
+            <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">EWiyoro</a>
         </div>
         <nav class="text-white text-base font-semibold pt-3">
             <a href="{{ route('dashboard') }}" class="flex items-center text-white py-4 pl-6 nav-item">
@@ -49,17 +49,18 @@
             <div @click.away="open = false" class="relative" x-data="{ open: false }">
                 <button @click="open = !open" class="flex items-center text-white opacity-75 w-full hover:opacity-100 py-4 pl-6 nav-item">
                     <i class="fas fa-sticky-note mr-3"></i>
-                    <p class="">Data SPPT</p>
+                    <p class="">PBBP2</p>
                     <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </button>
                 <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="right-0 w-4/5 mt-2 origin-top-right">
                     <div class="px-2 py-2">
-                      <a class="block px-4 py-2 pl-8 mt-1 text-sm font-semibold rounded-lg hover:text-gray-900 focus:text-gray-900 focus:outline-none focus:shadow-outline" href="{{ route('tax') }}">Belum Bayar</a>
-                      <a class="block px-4 py-2 pl-8 mt-1 text-sm font-semibold rounded-lg hover:text-gray-900 focus:text-gray-900 focus:outline-none focus:shadow-outline" href="{{ route('tax.payed') }}">Sudah Bayar</a>
+                      <a class="block px-4 py-2 pl-8 mt-1 text-sm font-semibold rounded-lg hover:text-gray-900 focus:text-gray-900 focus:outline-none focus:shadow-outline" href="{{ route('tax') }}">Data SPPT</a>
+                      <a class="block px-4 py-2 pl-8 mt-1 text-sm font-semibold rounded-lg hover:text-gray-900 focus:text-gray-900 focus:outline-none focus:shadow-outline" href="{{ route('tax.payed') }}">Data SPPT Terbayar</a>
                     </div>
                   </div>
             </div>
 
+            <!--
             <a href="tables.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-table mr-3"></i>
                 Tables
@@ -76,6 +77,7 @@
                 <i class="fas fa-calendar mr-3"></i>
                 Calendar
             </a>
+            -->
         </nav>
     </aside>
 
@@ -101,7 +103,7 @@
         <!-- Mobile Header & Nav -->
         <header x-data="{ isOpen: false }" class="w-full bg-sidebar py-5 px-6 sm:hidden">
             <div class="flex items-center justify-between">
-                <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
+                <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">EWiyoro</a>
                 <button @click="isOpen = !isOpen" class="text-white text-3xl focus:outline-none">
                     <i x-show="!isOpen" class="fas fa-bars"></i>
                     <i x-show="isOpen" class="fas fa-times"></i>
@@ -110,10 +112,21 @@
 
             <!-- Dropdown Nav -->
             <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
-                <a href="index.html" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
+                <a href="{{route('dashboard')}}" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
                     <i class="fas fa-tachometer-alt mr-3"></i>
                     Dashboard
                 </a>
+                <a href="{{route('tax')}}" class="flex items-center text-white py-2 pl-4 nav-item">
+                    <i class="fas fa-sticky-note mr-3"></i>
+                    Data SPPT
+                </a>
+                <a href="{{route('tax.payed')}}" class="flex items-center text-white py-2 pl-4 nav-item">
+                    <i class="fas fa-sticky-note mr-3"></i>
+                    Data SPPT Terbayar
+                </a>
+
+
+                <!--
                 <a href="blank.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-sticky-note mr-3"></i>
                     Blank Page
@@ -138,7 +151,8 @@
                     <i class="fas fa-user mr-3"></i>
                     My Profil
                 </a>
-                
+                -->
+
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <button class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">

@@ -10,4 +10,9 @@ class Tax extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    public function pays()
+    {
+        return $this->hasMany(Pay::class, 'tax_id', 'id');
+    }
 }
