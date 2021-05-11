@@ -8,7 +8,7 @@
                 <div class="flex flex-col justify-between sm:flex-row">
                   <div class="text-center sm:text-left flex-start">
                     <h3 class="text-lg font-semibold leading-6 text-gray-800">Data SPPT Sudah Terbayarkan</h3>
-                    <h2 class="text-lg font-semibold leading-6 text-gray-800">Total Terbayar </h2>
+                    <h2 class="text-lg font-semibold leading-6 text-gray-800">Total Terbayar : {{$taxs->count() }} </h2>
                   </div>
 
                   <div class="flex items-center justify-center mt-2 space-x-2 sm:mt-0">

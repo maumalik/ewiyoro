@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use App\Models\Pay;
 use App\Models\Tax;
@@ -26,11 +27,13 @@ class PayController extends Controller
                     $q->where('tax_block', 'like', "%{$request->keyword}%");
                 });
             }
-        })->where('ispayed', true)->paginate($pagination);
+        })->where('ispayed', true) ->orderBy('created_at', 'desc')->paginate($pagination);
     
         $taxs->appends($request->only('option','keyword'));
 
-        //dd($taxs);
+        $value = Pay::where('user_id', $request->user()->id)->with('tax:value')->get();
+
+        dd($value);
     
         return view('dashboard.paid', [
             'taxs' => $taxs,
