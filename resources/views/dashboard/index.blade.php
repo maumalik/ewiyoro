@@ -46,7 +46,7 @@
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Dashboard
             </a>
-            <div @click.away="open = false" class="relative" x-data="@if($flag_menu == 2 || $flag_menu ==3) { open: true } @else { open: false } @endif">
+            <div @click.away="open = false" class="relative" x-data="@if($flag_menu == 2 || $flag_menu ==3 || $flag_menu == 4) { open: true } @else { open: false } @endif">
                 <button @click="open = !open" class="flex items-center text-white opacity-75 w-full hover:opacity-100 py-4 pl-6 nav-item">
                     <i class="fas fa-sticky-note mr-3"></i>
                     <p class="">PBBP2</p>
@@ -56,6 +56,7 @@
                     <div class="px-2 py-2">
                       <a class="@if($flag_menu==2) active-nav-link opacity-100 @endif block px-4 py-2 pl-8 text-sm font-semibold opacity-75 hover:opacity-100" href="{{ route('tax') }}">Data SPPT</a>
                       <a class="@if($flag_menu==3) active-nav-link opacity-100 @endif block px-4 py-2 pl-8 text-sm font-semibold opacity-75 hover:opacity-100" href="{{ route('tax.payed') }}">Data SPPT Terbayar</a>
+                      <a class="@if($flag_menu==4) active-nav-link opacity-100 @endif block px-4 py-2 pl-8 text-sm font-semibold opacity-75 hover:opacity-100" href="{{ route('tax.recap') }}">Rekapitulasi Pembayaran</a>
                     </div>
                   </div>
             </div>

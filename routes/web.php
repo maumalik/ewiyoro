@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaxController;
 use App\Http\Controllers\PayController;
+use App\Http\Controllers\RecapController;
 
 use App\Models\Tax;
 use App\Models\Pay;
@@ -42,4 +43,6 @@ Route::post('/sppt/{tax}/belum-bayar', [TaxController::class, 'paytax'])->name('
 
 Route::get('/sppt/sudah-bayar', [PayController::class, 'index'])->name('tax.payed');
 Route::post('/sppt/{pay}/sudah-bayar', [PayController::class, 'unpay'])->name('tax.unpayed');
+
+Route::get('/sppt/rekapitulasi-sudah-bayar', [RecapController::class, 'index'])->name('tax.recap');
 
