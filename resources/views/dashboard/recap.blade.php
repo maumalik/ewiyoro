@@ -9,7 +9,7 @@
                   <div class="text-center sm:text-left flex-start">
                     <h3 class="text-lg font-semibold leading-6 text-gray-800">Data SPPT Sudah Terbayarkan</h3>
                     <h2 class="text-base font-semibold leading-6 text-gray-500">Total SPPT Terbayar : {{$total}} </h2>
-                    <h2 class="text-base font-semibold leading-6 text-gray-500">Total Nomial Pembayaran : @currency($total_pays) </h2>
+                    <h2 class="text-base font-semibold leading-6 text-gray-500">Total Nominal Pembayaran : @currency($total_pays) </h2>
                   </div>
 
                 </div>

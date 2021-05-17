@@ -9,7 +9,7 @@
                   <div class="text-center sm:text-left flex-start">
                     <h3 class="text-lg font-semibold leading-6 text-gray-800">Data SPPT Sudah Terbayarkan</h3>
                     <h2 class="text-base font-semibold leading-6 text-gray-500">Total SPPT Terbayar : </h2>
-                    <h2 class="text-base font-semibold leading-6 text-gray-500">Total Nomial Pembayaran :</h2>
+                    <h2 class="text-base font-semibold leading-6 text-gray-500">Total Nominal Pembayaran :</h2>
                   </div>
 
                   <div class="flex items-center justify-center mt-2 space-x-2 sm:mt-0">
@@ -43,13 +43,29 @@
                 <table class="text-left w-full border-collapse mb-2"> <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
                     <thead>
                         <tr>
-                            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Tanggal Bayar</th>
+                            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Nama Petugas</th>
                             <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Nominal</th>
-                            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Action</th>                            
+                            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Detail</th>                            
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    @if ($pays->count() == 0)
+                        <tr class="hover:bg-grey-lighter">
+                          <td class="py-4 px-6 border-b border-grey-light text-center" colspan="3">Tidak Ada Data</td>
+                        <tr>
+                      @else
+                        @foreach ($pays as $pay => $post)
+                        <tr class="hover:bg-grey-lighter">
+                          <td class="py-4 px-6 border-b border-grey-light ">{{ $post }} </td>
+                          <td class="py-4 px-6 border-b border-grey-light ">@currency($post->sum('tax_sum_value'))</td>
+                          <td class="py-4 px-6 border-b border-grey-light ">
+                            <form action="{{route('tax.recapdetail', $pay)}}" method="get">
+                              <button class="rounded-full flex items-center justify-center bg-green-400 h-8 w-8 hover:bg-green-700" type="submit" title="Detail"><i class="fas fa-info-circle text-white"></i></button>
+                            </form>
+                          </td>
+                        <tr>
+                        @endforeach
+                      @endif
                     </tbody>
                 </table>
             </div>

@@ -17,13 +17,15 @@ class RecapController extends Controller
     {
         $pays = Pay::where('ispayed',true)
                 ->withSum('tax', 'value')
-                ->paginate(10)
+                ->get()
                 ->groupBy(function($item) {
                     return $item->created_at->format('d-m-Y');
                 });
 
         $pays_total = Pay::where('ispayed', true)->withSum('tax','value')->get()->sum('tax_sum_value');
         $total = Pay::where('ispayed', true)->count();
+
+        //dd($pays);
 
         return view('dashboard.recap',[
             'pays' => $pays,
@@ -35,7 +37,18 @@ class RecapController extends Controller
     }
 
     public function detail(Request $request, $date){
+        $dt = Carbon::parse($date);
+        $pays = Pay::whereDate('created_at', '=', date($dt))
+                ->where('ispayed', true)
+                ->with('user:id,name')
+                ->withSum('tax', 'value')
+                ->get()
+                ->groupBy('user_id');
+                
+
+        //dd($pays);
         return view('dashboard.recapdetail',[
+            'pays' => $pays,
             'date' => $date,
             'flag_menu' => 4,
             'title' => 'Rekapitulasi'

@@ -19,5 +19,9 @@ class Pay extends Model
     {
         return $this->belongsTo(Tax::class);
     }
-    
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
