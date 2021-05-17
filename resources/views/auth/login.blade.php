@@ -3,7 +3,7 @@
     <div class="container mx-auto h-screen flex flex-col-reverse md:flex-row items-center justify-center bg-gray-200">
         <div class="flex-grow flex flex-col text-center md:text-left md:ml-5">
             <h1 class="text-5xl text-blue-500 font-bold">Desa Wiyoro</h1>
-            <p class="text-3xl">Aplikasi Sistem informasi Desa Wiyoro</p>
+            <p class="text-3xl">Aplikasi PBB Desa Wiyoro</p>
         </div>
         <div class="flex-grow flex flex-col items-center my-4">
             <form action="{{ route('login') }}" method="post" class="shadow-lg w-80 p-4 flex flex-col bg-white rounded-lg">
