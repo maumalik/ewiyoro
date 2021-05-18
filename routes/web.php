@@ -46,4 +46,5 @@ Route::post('/sppt/{pay}/sudah-bayar', [PayController::class, 'unpay'])->name('t
 
 Route::get('/sppt/rekapitulasi-sudah-bayar', [RecapController::class, 'index'])->name('tax.recap');
 Route::get('/sppt/{date}/rekapitulasi-sudah-bayar', [RecapController::class, 'detail'])->name('tax.recapdetail');
+Route::get('/sppt/detail/{pay}/rekapitulasi-sudah-bayar', [RecapController::class, 'subdetail'])->name('tax.recapsubdetail');
 

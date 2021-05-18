@@ -25,8 +25,6 @@ class RecapController extends Controller
         $pays_total = Pay::where('ispayed', true)->withSum('tax','value')->get()->sum('tax_sum_value');
         $total = Pay::where('ispayed', true)->count();
 
-        //dd($pays);
-
         return view('dashboard.recap',[
             'pays' => $pays,
             'total_pays' => $pays_total, 
@@ -44,11 +42,42 @@ class RecapController extends Controller
                 ->withSum('tax', 'value')
                 ->get()
                 ->groupBy('user_id');
-                
 
-        //dd($pays);
+        $pays_total = Pay::whereDate('created_at', '=', date($dt))->where('ispayed', true)->withSum('tax','value')->get()->sum('tax_sum_value');
+        $total = Pay::whereDate('created_at', '=', date($dt))->where('ispayed', true)->count();
+  
         return view('dashboard.recapdetail',[
             'pays' => $pays,
+            'total_pays' => $pays_total, 
+            'total' => $total,
+            'date' => $date,
+            'flag_menu' => 4,
+            'title' => 'Rekapitulasi'
+        ]);
+    }
+
+    public function subdetail(Pay $pay)
+    {
+        $date = $pay->created_at->format('d-m-Y');
+        $name = $pay->user->name;
+
+        $pays = Pay::whereDate('created_at', '=', date(Carbon::parse($date)))
+        ->where('user_id', $pay->user_id)
+        ->where('ispayed', true)
+        ->withSum('tax', 'value')
+        ->paginate(10);
+
+        $pay = Pay::whereDate('created_at', '=', date(Carbon::parse($date)))
+        ->where('user_id', $pay->user_id)
+        ->where('ispayed', true)
+        ->withSum('tax', 'value')
+        ->get();
+
+        return view('dashboard.recapsubdetail',[
+            'total_pays' => $pay->sum('tax_sum_value'),
+            'total' => $pay->count(),
+            'pays' => $pays,
+            'name' => $name,
             'date' => $date,
             'flag_menu' => 4,
             'title' => 'Rekapitulasi'
