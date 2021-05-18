@@ -4,12 +4,10 @@
         <h1 class="text-sm font-bold"><a class="text-blue-500" href="{{ route('dashboard')}}">Dashboard</a>>Data SPPT Sudah Terbayarkan</h1>
 
         <div class="w-full mt-6">
-            <div class="px-6 py-4 mb-4 overflow-hidden border rounded-lg shadow-sm border-secondary-300 bg-white">
+            <div class="px-6 py-4 mb-4 overflow-hidden border rounded-lg shadow border-secondary-300 bg-white">
                 <div class="flex flex-col justify-between sm:flex-row">
                   <div class="text-center sm:text-left flex-start">
                     <h3 class="text-lg font-semibold leading-6 text-gray-800">Data SPPT Sudah Terbayarkan</h3>
-                    <h2 class="text-base font-semibold leading-6 text-gray-500">Total SPPT Terbayar : {{$total}} </h2>
-                    <h2 class="text-base font-semibold leading-6 text-gray-500">Total Nomial Pembayaran : @currency($total_pays) </h2>
                   </div>
 
                   <div class="flex items-center justify-center mt-2 space-x-2 sm:mt-0">
@@ -38,8 +36,44 @@
                   </div>
                 </div>
               </div>
+
+              <div class="flex flex-wrap mb-3">
+                <div class="w-full md:w-1/2 xl:w-1/2 p-1">
+                    <!--Metric Card-->
+                    <div class="bg-white border rounded-lg shadow p-2">
+                        <div class="flex flex-row items-center">
+                            <div class="flex-shrink pr-4">
+                                <div class="rounded p-3 bg-yellow-300"><i class="fa fa-address-card fa-2x fa-fw fa-inverse"></i></div>
+                            </div>
+                            <div class="flex-1 text-right md:text-center">
+                                <h5 class="font-bold uppercase text-gray-500">Jumlah SPPT</h5>
+                                <h3 class="font-bold text-lg"> {{$total}} </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Metric Card-->
+                </div>
+                <div class="w-full md:w-1/2 xl:w-1/2 p-1">
+                    <!--Metric Card-->
+                    <div class="bg-white border rounded-lg shadow p-2">
+                        <div class="flex flex-row items-center">
+                            <div class="flex-shrink pr-4">
+                                <div class="rounded p-3 bg-gray-600"><i class="fas fa-money-bill fa-2x fa-fw fa-inverse"></i></div>
+                            </div>
+                            <div class="flex-1 text-right md:text-center">
+                                <h5 class="font-bold uppercase text-gray-500">Total</h5>
+                                <h3 class="font-bold text-lg">@currency($total_pays)</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Metric Card-->
+                </div>               
+
+              </div>
+
+              
             
-            <div class="bg-white overflow-auto p-2 border rounded-lg shadow-sm border-secondary-300">
+            <div class="bg-white overflow-auto p-2 border rounded-lg shadow border-secondary-300">
               
               @if (session('status'))
 
