@@ -11,10 +11,18 @@ class RecapController extends Controller
     public function __construct()
     {
         $this->middleware(['auth']);
+        //{
+        //    return response(view('errors.403'), 403);
+        //}
     }
 
     public function index()
     {
+        if(auth()->user()->role_id != 1)
+        {
+            abort(403, 'Unauthorized action');
+        }
+
         $pays = Pay::where('ispayed',true)
                 ->withSum('tax', 'value')
                 ->get()

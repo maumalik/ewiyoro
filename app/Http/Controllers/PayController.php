@@ -39,9 +39,6 @@ class PayController extends Controller
         $pays = $request->user()->pays()->where('ispayed', true)->withSum('tax','value')->get()->sum('tax_sum_value');
         $total = $request->user()->pays()->where('ispayed', true)->count();
 
-        //$value = $pays->tax()->max('value');
-
-        //dd($pays);
     
         return view('dashboard.paid', [
             'taxs' => $taxs,

@@ -56,7 +56,9 @@
                     <div class="px-2 py-2">
                       <a class="@if($flag_menu==2) active-nav-link opacity-100 @endif block px-4 py-2 pl-8 text-sm font-semibold opacity-75 hover:opacity-100" href="{{ route('tax') }}">Data SPPT</a>
                       <a class="@if($flag_menu==3) active-nav-link opacity-100 @endif block px-4 py-2 pl-8 text-sm font-semibold opacity-75 hover:opacity-100" href="{{ route('tax.payed') }}">Data SPPT Terbayar</a>
-                      <a class="@if($flag_menu==4) active-nav-link opacity-100 @endif block px-4 py-2 pl-8 text-sm font-semibold opacity-75 hover:opacity-100" href="{{ route('tax.recap') }}">Rekapitulasi Pembayaran</a>
+                      @if (auth()->user()->role_id == 1)  
+                        <a class="@if($flag_menu==4) active-nav-link opacity-100 @endif block px-4 py-2 pl-8 text-sm font-semibold opacity-75 hover:opacity-100" href="{{ route('tax.recap') }}">Rekapitulasi Pembayaran</a>
+                      @endif
                     </div>
                   </div>
             </div>
