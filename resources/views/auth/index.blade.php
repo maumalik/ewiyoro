@@ -18,10 +18,11 @@
             </svg>
             <span class="ml-3 text-xl">Desa Wiyoro</span>
         </a>
+        <!--
         <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
             <a href="{{ route('login') }}" class="mr-5 hover:text-gray-900">Login</a>
             <a href="{{ route('register') }}" class="mr-5 hover:text-gray-900">Registrasi</a>
-        </nav>
+        </nav>-->
         </div>
     </header>
 
